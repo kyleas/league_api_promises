@@ -10,7 +10,7 @@ const API_URL = 'https://la1.api.riotgames.com/lol'
 
 // Receives a summoner name in the query parameters
 app.get('/', (req, res) => {
-  // If there is no 
+  // If there is no summoner name, send Bad Request
   if (!req.query.summoner_name) {
     res.sendStatus(400)
   }
@@ -49,7 +49,7 @@ function fetchF2PChampionMatches (summoner) {
         return matches.filter(match => champion_ids.includes(match.champion))
       })
       // Naive error handling
-      .catch(error => error)
+      .catch(error => {throw error})
 }
 
 
